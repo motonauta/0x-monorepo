@@ -20,7 +20,9 @@ from eth_utils import keccak, remove_0x_prefix, to_bytes, to_checksum_address
 from web3 import Web3
 import web3.exceptions
 from web3.providers.base import BaseProvider
+from eth_account.signers.local import BaseAccount
 from web3.utils import datatypes
+from eth_account.messages import defunct_hash_message
 
 from zero_ex.contract_addresses import NETWORK_TO_ADDRESSES, NetworkId
 import zero_ex.contract_artifacts
@@ -462,7 +464,7 @@ def _convert_ec_signature_to_vrs_hex(signature: ECSignature) -> str:
 
 
 def sign_hash(
-    provider: BaseProvider, signer_account: str, hash_hex: str
+    provider: BaseProvider, signer_account: BaseAccount, hash_hex: str
 ) -> str:
     """Sign a message with the given hash, and return the signature.
 
@@ -486,11 +488,9 @@ def sign_hash(
     signer_address = signer_account.address
 
     web3_instance = Web3(provider)
-    # false positive from pylint: disable=no-member
-    signature = signer_account.signHash(
-        hash_hex.replace("0x", "")
-    ).get('signature').hex() 
-
+    
+    message_hash = defunct_hash_message(primitive=Web3.toBytes(hexstr=hash_hex))
+    signature = web3_instance.eth.account.signHash(message_hash, private_key=signer_account.privateKey).signature.hex()
     valid_v_param_values = [27, 28]
 
     # HACK: There is no consensus on whether the signatureHex string should be
