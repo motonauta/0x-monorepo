@@ -5,18 +5,27 @@ import { Network } from '../types';
 interface AssetDataByNetwork {
     [Network.Kovan]?: string;
     [Network.Mainnet]?: string;
+    [Network.Rinkeby]?: string;
 }
 
 export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     // ZRX
     {
         [Network.Mainnet]: '0xf47261b0000000000000000000000000e41d2489571d322189246dafa5ebde1f4699f498',
-        [Network.Kovan]: '0xf47261b00000000000000000000000002002d3812f58e35f0ea1ffbf80a75a38c32175fa',
+        [Network.Kovan]:   '0xf47261b00000000000000000000000002002d3812f58e35f0ea1ffbf80a75a38c32175fa',
+        [Network.Rinkeby]: '0xf47261b00000000000000000000000008080c7e4b81ecf23aa6f877cfbfd9b0c228c6ffa',
+    },
+    // ART
+    {
+        [Network.Kovan]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Rinkeby]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e',
     },
     // SPANK
     {
         [Network.Mainnet]: '0xf47261b000000000000000000000000042d6622dece394b54999fbd73d108123806f6a18',
-        [Network.Kovan]: '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
+        [Network.Kovan]:   '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
+        [Network.Rinkeby]: '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
     },
     // OMG
     {
@@ -67,5 +76,15 @@ export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     {
         [Network.Kovan]: '',
         [Network.Mainnet]: '0xf47261b0000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-    },
+    }
 ];
+
+//# exchange: '0xbce0b5f6eb618c565c3e5f5cd69652bbc279f44e',    0x48bacb9266a570d521063ef5dd96e61686dbe788
+// # erc20Proxy: '0x2f5ae4f6106e89b4147651688a92256885c5f410',
+// # erc721Proxy: '0x7656d773e11ff7383a14dcf09a9c50990481cd10',
+// # zrxToken: '0x8080c7e4b81ecf23aa6f877cfbfd9b0c228c6ffa',
+// # etherToken: '0xc778417e063141139fce010982780140aa0cd5ab',
+// # assetProxyOwner: '0xe1703da878afcebff5b7624a826902af475b9c03',
+// # forwarder: '0x2d40589abbdee84961f3a7656b9af7adb0ee5ab4',
+// # orderValidator: '0x0c5173a51e26b29d6126c686756fb9fbef71f762',
+// # dutchAuction: '0xdd7bd6437e67c422879364740ab5855fe3dc41f7',

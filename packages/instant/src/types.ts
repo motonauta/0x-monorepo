@@ -91,6 +91,7 @@ export interface Asset {
 export enum Network {
     Kovan = 42,
     Mainnet = 1,
+    Rinkeby = 4
 }
 
 export enum ZeroExInstantError {
