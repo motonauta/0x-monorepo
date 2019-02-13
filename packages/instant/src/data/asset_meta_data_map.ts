@@ -206,4 +206,11 @@ export const assetMetaDataMap: ObjectMap<AssetMetaData> = {
         symbol: 'usdc',
         name: 'USD Coin',
     },
+    '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e': {
+        assetProxyId: AssetProxyId.ERC20,
+        decimals: 18,
+        primaryColor: '#c8a667',
+        symbol: 'art',
+        name: 'Maecenas Art',
+    },
 };

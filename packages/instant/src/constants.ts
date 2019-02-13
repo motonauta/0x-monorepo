@@ -55,6 +55,7 @@ export const META_MASK_SITE_URL = 'https://metamask.io/';
 export const ETHEREUM_NODE_URL_BY_NETWORK = {
     [Network.Mainnet]: 'https://mainnet.infura.io/',
     [Network.Kovan]: 'https://kovan.infura.io/',
+    [Network.Rinkeby]: 'https://rinkeby.infura.io/'
 };
 export const ZERO_EX_SITE_URL = 'https://www.0xproject.com/';
 export const BLOCK_POLLING_INTERVAL_MS = 10000; // 10s

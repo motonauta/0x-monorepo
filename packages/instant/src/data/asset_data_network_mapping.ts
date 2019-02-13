@@ -5,18 +5,27 @@ import { Network } from '../types';
 interface AssetDataByNetwork {
     [Network.Kovan]?: string;
     [Network.Mainnet]?: string;
+    [Network.Rinkeby]?: string;
 }
 
 export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     // ZRX
     {
         [Network.Mainnet]: '0xf47261b0000000000000000000000000e41d2489571d322189246dafa5ebde1f4699f498',
-        [Network.Kovan]: '0xf47261b00000000000000000000000002002d3812f58e35f0ea1ffbf80a75a38c32175fa',
+        [Network.Kovan]:   '0xf47261b00000000000000000000000002002d3812f58e35f0ea1ffbf80a75a38c32175fa',
+        [Network.Rinkeby]: '0xf47261b00000000000000000000000008080c7e4b81ecf23aa6f877cfbfd9b0c228c6ffa',
+    },
+    // ART
+    {
+        [Network.Kovan]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Rinkeby]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e',
     },
     // SPANK
     {
         [Network.Mainnet]: '0xf47261b000000000000000000000000042d6622dece394b54999fbd73d108123806f6a18',
-        [Network.Kovan]: '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
+        [Network.Kovan]:   '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
+        [Network.Rinkeby]: '0xf47261b00000000000000000000000007c9eee8448f3a7d1193389652d863b27e543272d',
     },
     // OMG
     {
@@ -67,5 +76,5 @@ export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     {
         [Network.Kovan]: '',
         [Network.Mainnet]: '0xf47261b0000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-    },
+    }
 ];
