@@ -20,12 +20,15 @@ from eth_utils import keccak, remove_0x_prefix, to_bytes, to_checksum_address
 from web3 import Web3
 import web3.exceptions
 from web3.providers.base import BaseProvider
+from eth_account.signers.local import BaseAccount
 from web3.utils import datatypes
+from eth_account.messages import defunct_hash_message
 
 from zero_ex.contract_addresses import NETWORK_TO_ADDRESSES, NetworkId
 import zero_ex.contract_artifacts
 from zero_ex.dev_utils.type_assertions import (
     assert_is_address,
+    assert_is_account,
     assert_is_hex_string,
     assert_is_provider,
 )
@@ -340,17 +343,17 @@ class OrderInfo(NamedTuple):
 
 
 def is_valid_signature(
-    provider: BaseProvider, data: str, signature: str, signer_address: str
+    provider: BaseProvider, data: str, signature: str, signer_account: str
 ) -> Tuple[bool, str]:
     """Check the validity of the supplied signature.
 
     Check if the supplied `signature`:code: corresponds to signing `data`:code:
-    with the private key corresponding to `signer_address`:code:.
+    with the private key corresponding to `signer_account`:code:.
 
     :param provider: A Web3 provider able to access the 0x Exchange contract.
     :param data: The hex encoded data signed by the supplied signature.
     :param signature: The hex encoded signature.
-    :param signer_address: The hex encoded address that signed the data to
+    :param signer_account: The account that signed the data to
         produce the supplied signature.
     :returns: Tuple consisting of a boolean and a string.  Boolean is true if
         valid, false otherwise.  If false, the string describes the reason.
@@ -366,7 +369,8 @@ def is_valid_signature(
     assert_is_provider(provider, "provider")
     assert_is_hex_string(data, "data")
     assert_is_hex_string(signature, "signature")
-    assert_is_address(signer_address, "signer_address")
+    assert_is_account(signer_account, "signer_account")
+    signer_address = signer_account.address
 
     web3_instance = Web3(provider)
     # false positive from pylint: disable=no-member
@@ -381,7 +385,7 @@ def is_valid_signature(
     try:
         return (
             contract.call().isValidSignature(
-                data, to_checksum_address(signer_address), signature
+                data, signer_address, signature
             ),
             "",
         )
@@ -460,12 +464,12 @@ def _convert_ec_signature_to_vrs_hex(signature: ECSignature) -> str:
 
 
 def sign_hash(
-    provider: BaseProvider, signer_address: str, hash_hex: str
+    provider: BaseProvider, signer_account: BaseAccount, hash_hex: str
 ) -> str:
     """Sign a message with the given hash, and return the signature.
 
     :param provider: A Web3 provider.
-    :param signer_address: The address of the signing account.
+    :param signer_account: The account of the signing account.
     :param hash_hex: A hex string representing the hash, like that returned
         from `generate_order_hash_hex()`:code:.
     :returns: A string, of ASCII hex digits, representing the signature.
@@ -479,15 +483,14 @@ def sign_hash(
     '0x1b117902c86dfb95fe0d1badd983ee166ad259b27acb220174cbb4460d872871137feabdfe76e05924b484789f79af4ee7fa29ec006cedce1bbf369320d034e10b03'
     """  # noqa: E501 (line too long)
     assert_is_provider(provider, "provider")
-    assert_is_address(signer_address, "signer_address")
+    assert_is_account(signer_account, "signer_account")
     assert_is_hex_string(hash_hex, "hash_hex")
+    signer_address = signer_account.address
 
     web3_instance = Web3(provider)
-    # false positive from pylint: disable=no-member
-    signature = web3_instance.eth.sign(  # type: ignore
-        signer_address, hexstr=hash_hex.replace("0x", "")
-    ).hex()
-
+    
+    message_hash = defunct_hash_message(primitive=Web3.toBytes(hexstr=hash_hex))
+    signature = web3_instance.eth.account.signHash(message_hash, private_key=signer_account.privateKey).signature.hex()
     valid_v_param_values = [27, 28]
 
     # HACK: There is no consensus on whether the signatureHex string should be
@@ -508,7 +511,7 @@ def sign_hash(
         )
 
         (valid, _) = is_valid_signature(
-            provider, hash_hex, signature_as_vrst_hex, signer_address
+            provider, hash_hex, signature_as_vrst_hex, signer_account
         )
 
         if valid is True:
@@ -523,7 +526,7 @@ def sign_hash(
             ).hex()
         )
         (valid, _) = is_valid_signature(
-            provider, hash_hex, signature_as_vrst_hex, signer_address
+            provider, hash_hex, signature_as_vrst_hex, signer_account
         )
 
         if valid is True:

@@ -4,6 +4,7 @@ from typing import Any
 
 from eth_utils import is_address
 from web3.providers.base import BaseProvider
+from eth_account.signers.local import BaseAccount
 
 
 def assert_is_string(value: Any, name: str) -> None:
@@ -72,6 +73,18 @@ def assert_is_address(value: Any, name: str) -> None:
         raise ValueError(
             f"Expected variable '{name}' to be a valid Ethereum"
             + " address, but it's not."
+        )
+
+def assert_is_account(value: Any, name: str) -> None:
+    """Assert that `value` is a valid Ethereum address.
+
+    If `value` isn't a hex string, raise a TypeError.  If it isn't a valid
+    Ethereum address, raise a ValueError.
+    """
+    if not isinstance(value, BaseAccount):
+        raise TypeError(
+            f"Expected variable '{name}' to be an instance of a Account,"
+            + " but it's not."
         )
 
 
