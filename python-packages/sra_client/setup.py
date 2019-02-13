@@ -7,8 +7,8 @@ import distutils.command.build_py
 
 from setuptools import setup, find_packages  # noqa: H301
 
-NAME = "0x-sra-client"
-VERSION = "1.0.0"
+NAME = "mcns-0x-sra-client"
+VERSION = "1.0.1"
 # To install the library, run the following
 #
 # python setup.py install
@@ -32,7 +32,7 @@ class TestPublishCommand(distutils.command.build_py.build_py):
         """Run twine to upload to test.pypi.org."""
         subprocess.check_call(  # nosec
             (
-                "twine upload --repository-url https://test.pypi.org/legacy/"
+                "twine upload --repository-url https://pypi.maecenas.co/simple/"
                 + " --verbose dist/*"
             ).split()
         )
@@ -45,7 +45,7 @@ class PublishCommand(distutils.command.build_py.build_py):
 
     def run(self):
         """Run twine to upload to pypi.org."""
-        subprocess.check_call("twine upload dist/*".split())  # nosec
+        subprocess.check_call("twine upload --repository-url https://pypi.org/simple/simple/ dist/*".split())  # nosec
 
 
 class LintCommand(distutils.command.build_py.build_py):
@@ -62,7 +62,7 @@ setup(
     version=VERSION,
     description="Standard Relayer REST API",
     author_email="",
-    url="https://github.com/0xproject/0x-monorepo/python-packages/sra_client",
+    url="https://github.com/motonauta/0x-monorepo.git/python-packages/sra_client",
     keywords=["OpenAPI", "OpenAPI-Generator", "Standard Relayer REST API"],
     install_requires=REQUIRES,
     packages=find_packages(),
