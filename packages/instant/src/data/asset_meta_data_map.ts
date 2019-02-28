@@ -1,8 +1,35 @@
 import { AssetProxyId, ObjectMap } from '@0x/types';
 
 import { AssetMetaData } from '../types';
-
 export const assetMetaDataMap: ObjectMap<AssetMetaData> = {
+    '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e': {
+        assetProxyId: AssetProxyId.ERC20,
+        decimals: 18,
+        primaryColor: '#c8a667',
+        symbol: 'art',
+        name: 'Maecenas Art',
+    },
+    '0xf47261b0000000000000000000000000b9e31a22e3a1c743c6720f3b723923e91f3c0f8b': {
+        assetProxyId: AssetProxyId.ERC20,
+        decimals: 6,
+        primaryColor: '#2775CA',
+        symbol: 'usdc',
+        name: 'USD Coin',
+    },
+    '0xf47261b0000000000000000000000000056fd409e1d7a124bd7017459dfea2f387b6d5cd': {
+        assetProxyId: AssetProxyId.ERC20,
+        decimals: 2,
+        primaryColor: '#20bcd4',
+        symbol: 'gusd',
+        name: 'Gemini USD',
+    },
+    '0xf47261b000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359': {
+        assetProxyId: AssetProxyId.ERC20,
+        decimals: 18,
+        primaryColor: '#DEA349',
+        symbol: 'dai',
+        name: 'Dai Stablecoin',
+    },
     '0xf47261b0000000000000000000000000e41d2489571d322189246dafa5ebde1f4699f498': {
         assetProxyId: AssetProxyId.ERC20,
         decimals: 18,
@@ -191,26 +218,5 @@ export const assetMetaDataMap: ObjectMap<AssetMetaData> = {
         primaryColor: '#3A74F6',
         symbol: 'ast',
         name: 'AirSwap',
-    },
-    '0xf47261b000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359': {
-        assetProxyId: AssetProxyId.ERC20,
-        decimals: 18,
-        primaryColor: '#DEA349',
-        symbol: 'dai',
-        name: 'Dai Stablecoin',
-    },
-    '0xf47261b0000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': {
-        assetProxyId: AssetProxyId.ERC20,
-        decimals: 6,
-        primaryColor: '#2775CA',
-        symbol: 'usdc',
-        name: 'USD Coin',
-    },
-    '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e': {
-        assetProxyId: AssetProxyId.ERC20,
-        decimals: 18,
-        primaryColor: '#c8a667',
-        symbol: 'art',
-        name: 'Maecenas Art',
     },
 };
