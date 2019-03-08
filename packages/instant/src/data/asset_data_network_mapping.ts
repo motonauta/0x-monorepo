@@ -9,17 +9,34 @@ interface AssetDataByNetwork {
 }
 
 export const assetDataNetworkMapping: AssetDataByNetwork[] = [
+    // ART
+    {
+        [Network.Kovan]:   '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Rinkeby]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e',
+    },
+    // USDC
+    {
+        [Network.Kovan]:   '0xf47261b0000000000000000000000000aaded8f5af86cf7e6cef1844f67ff534a80f410e',
+        [Network.Rinkeby]: '0xf47261b0000000000000000000000000aaded8f5af86cf7e6cef1844f67ff534a80f410e',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000b9e31a22e3a1c743c6720f3b723923e91f3c0f8b',
+    },
+    // GUSD
+    {
+        [Network.Kovan]:   '0xf47261b0000000000000000000000000d0309e3c3ff6433b86232ac51c4f64a92da6b994',
+        [Network.Rinkeby]: '0xf47261b0000000000000000000000000d0309e3c3ff6433b86232ac51c4f64a92da6b994',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000056fd409e1d7a124bd7017459dfea2f387b6d5cd',
+    },
+    // DAI
+    {
+        [Network.Rinkeby]: '0xf47261b00000000000000000000000000cb2e306fd0d4d28fa7f406c60fcde762a197af1d',
+        [Network.Mainnet]: '0xf47261b0000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359',
+    },
     // ZRX
     {
         [Network.Mainnet]: '0xf47261b0000000000000000000000000e41d2489571d322189246dafa5ebde1f4699f498',
         [Network.Kovan]:   '0xf47261b00000000000000000000000002002d3812f58e35f0ea1ffbf80a75a38c32175fa',
         [Network.Rinkeby]: '0xf47261b00000000000000000000000008080c7e4b81ecf23aa6f877cfbfd9b0c228c6ffa',
-    },
-    // ART
-    {
-        [Network.Kovan]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
-        [Network.Rinkeby]: '0xf47261b0000000000000000000000000c0859d8f894a9a28dd91445d0f2e9023f9f8e929',
-        [Network.Mainnet]: '0xf47261b0000000000000000000000000fec0cf7fe078a500abf15f1284958f22049c2c7e',
     },
     // SPANK
     {
@@ -30,7 +47,7 @@ export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     // OMG
     {
         [Network.Mainnet]: '0xf47261b0000000000000000000000000d26114cd6ee289accf82350c8d8487fedb8a0c07',
-        [Network.Kovan]: '0xf47261b000000000000000000000000046096d8ec059dbaae2950b30e01634ff0dc652ec',
+        [Network.Kovan]:   '0xf47261b000000000000000000000000046096d8ec059dbaae2950b30e01634ff0dc652ec',
     },
     // MKR
     {
@@ -69,12 +86,7 @@ export const assetDataNetworkMapping: AssetDataByNetwork[] = [
     },
     // REP
     {
-        [Network.Kovan]: '0xf47261b00000000000000000000000008cb3971b8eb709c14616bd556ff6683019e90d9c',
+        [Network.Kovan]:   '0xf47261b00000000000000000000000008cb3971b8eb709c14616bd556ff6683019e90d9c',
         [Network.Mainnet]: '0xf47261b00000000000000000000000001985365e9f78359a9b6ad760e32412f4a445e862',
-    },
-    // USDC
-    {
-        [Network.Kovan]: '',
-        [Network.Mainnet]: '0xf47261b0000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     }
 ];
